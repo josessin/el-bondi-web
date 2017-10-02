@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>El Bondi - Cervecería Nómade</title>
+</head>
+<body>
+    <h1>Donde estamos</h1>
+    <ul>
+        {{#each lugares}}
+        <li>Donde? <b>{{this.dir}}</b> Cuando? <b>{{this.fecha}}</b></li>
+        {{/each}}
+    </ul>
+</body>
+</html>
