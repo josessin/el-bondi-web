@@ -18,7 +18,6 @@ app.engine("hbs", engines.handlebars);
 app.set("views", "./views");
 app.set("view engine", "hbs");
 
-
 app.get("/", (req, res) => {
     getFacts().then(lugares => {
         res.render("index", { lugares });
