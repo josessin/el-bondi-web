@@ -36,7 +36,6 @@
             btnLogout.classList.remove("hide");
         }else{
             console.log("Not logged in");
-           
         }
     });
 
