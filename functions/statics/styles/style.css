@@ -56,3 +56,7 @@ input{
 .hide{
     display: none;
 }
+
+.ent{
+    display: inline-block;
+}

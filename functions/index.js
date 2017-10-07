@@ -1,9 +1,8 @@
 const firebase = require("firebase-admin");
 const functions = require('firebase-functions');
 const express = require("express");
-const engines = require("consolidate");
 const path = require("path");
-
+const hbs = require("hbs");
 var serviceAccount = require("./ElBondiCerveceria-bbb129fc191c.json");
 
 firebase.initializeApp({
@@ -23,7 +22,7 @@ function getFacts() {
 
 const app = express();
 
-app.engine("hbs", engines.handlebars);
+hbs.registerPartials(path.join(__dirname,'views/partials'))
 app.set("views", "./views");
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, 'statics')));
@@ -41,7 +40,25 @@ app.get("/admin", (req, res) => {
 app.post("/admin", (req, res) => {
     var user = req.body;
     //TODO: verify user with database
-    res.render("admin");
+    res.render("admin",{
+        entradas:[
+            {
+                fecha: "2017-12-7",
+                direccion:"Huarpes 51",
+                uid:"32n32m2f222212"
+            },
+            {
+                fecha: "2017-12-7",
+                direccion:"Huarpes 51",
+                uid:"32n32m2f222212"
+            },
+            {
+                fecha: "2017-12-7",
+                direccion:"Huarpes 51",
+                uid:"32n32m2f222212"
+            }
+        ]
+    });
 
 });
 
