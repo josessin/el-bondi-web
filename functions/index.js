@@ -5,6 +5,7 @@ const path = require("path");
 const hbs = require("hbs");
 const dummy = require("./server-others/dummy-data.js");
 const Queries = require("./server-others/queries.js");
+const helpers = require("./server-others/helpers.js");
 var serviceAccount = require("./ElBondiCerveceria-bbb129fc191c.json");
 
 firebase.initializeApp({
@@ -45,22 +46,7 @@ app.post("/admin", (req, res) => {
     var user = req.body;
     //TODO: verify user with database
     q.getLast(12).then((obj) => {
-
-        var entradas = [];
-
-        for (var i in obj.val()) {
-            if (obj.val().hasOwnProperty(i)) {
-
-                var val ={
-                    uid: i,
-                    fecha: obj.val()[i].fecha,
-                    direccion: obj.val()[i].direccion
-                }
-                entradas.push(val);
-            }
-        }
-
-        //res.send(result);
+        var entradas = helpers.locationArray(obj);
         res.render("admin", {entradas});
     }).catch((e) => console.log(e));
 
@@ -68,7 +54,7 @@ app.post("/admin", (req, res) => {
 
 app.get("/__dummy", (req, res) => {
     res.send("adding...");
-    //dummy(firebase);
+    dummy(firebase);
 
 })
 

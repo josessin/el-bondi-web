@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,500">
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
+    <script src="./js/fbConfig.js"></script>
+    <script src="./js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
+
     <title>Administrador</title>
 </head>
+
 <body>
-    <h1>ADMINISTRADOR</h1>
+    <div class="all">
+        <div id="titulo">
+            <h1>ADMINISTRADOR</h1>
+        </div>
+        <div id="main">
 
-    {{#each entradas as |datos|}}
-        {{>entrada datos = datos}}
-    {{/each}}
+            <div id="entradas">
+                {{#each entradas as |datos|}} {{>entrada datos = datos}} {{/each}}
+            </div>
 
+            <button id="btnAgregar" type="button" onclick="agregarEntrada()">Agregar</button>
+        </div>
+        <script src="./js/admin.js"></script>
+    </div>
 </body>
+
 </html>
