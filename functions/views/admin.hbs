@@ -12,8 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
     <script src="./js/fbConfig.js"></script>
     <script src="./js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="./styles/style.css">
-
+     <link rel="stylesheet" href="./styles/style.css">
     <title>Administrador</title>
 </head>
 
@@ -25,13 +24,19 @@
         <div id="main">
 
             <div id="entradas">
-                {{#each entradas as |datos|}} {{>entrada datos = datos}} {{/each}}
+                {{#each entradas as |datos|}} 
+                    {{>entrada datos = datos}} 
+                {{/each}}
             </div>
 
-            <button id="btnAgregar" type="button" onclick="agregarEntrada()">Agregar</button>
+            <button id="btnAgregar" type="button" onclick="agregarEntrada()" class="norm">Agregar</button>
         </div>
+
+
         <script src="./js/admin.js"></script>
+        
+
     </div>
 </body>
-
+    <link rel="stylesheet" href="./styles/style.css">
 </html>
