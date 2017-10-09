@@ -1,23 +1,26 @@
 <div class="entrada">
     <ul id="{{datos.uid}}" class="ulentrada">
         <li class="ent">
+            <button class="btnBorrar hide" type="button" onclick="borrarEntrada($(this).parent().closest('div'))">X</button>
+        </li>
+        <li class="ent">
             <p>Fecha</p>
         </li>
         <li class="ent">
-            <input class="inFecha" type="date" value="{{datos.fecha}}">
+            <input class="inFecha" type="date" value="{{datos.fecha}}" disabled>
         </li>
         <li class="ent">
             <p>Dir</p>
         </li>
         <li class="ent">
-            <input class="inDireccion" type="text" value="{{datos.direccion}}">
+            <input class="inDireccion" type="text" value="{{datos.direccion}}" disabled>
         </li>
 
         <li class="ent">
             <p>Info</p>
         </li>
         <li class="ent">
-            <input class="inNota" type="text" value="{{datos.nota}}">
+            <input class="inNota" type="text" value="{{datos.nota}}" disabled>
         </li>
 
         <li class="ent">
