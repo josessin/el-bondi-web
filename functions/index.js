@@ -44,11 +44,21 @@ app.get("/admin", (req, res) => {
 
 app.post("/admin", (req, res) => {
     var user = req.body;
-    //TODO: verify user with database
-    q.getLast(12).then((obj) => {
-        var entradas = helpers.locationArray(obj);
-        res.render("admin", {entradas});
-    }).catch((e) => console.log(e));
+    //mucho mas seguro de lo necesario.. pero no importa, me gusta
+    //Evaluar que el uid del usuario exista en la base de datos
+    firebase.database().ref("admins").child(req.body.uid).once("value").then((snap) => {
+        if (!snap.val()) {
+            res.send("Invalid User :(");
+
+        }
+        q.getLast(12).then((obj) => {
+            var entradas = helpers.locationArray(obj);
+            res.render("admin", { entradas });
+        }).catch((e) => console.log(e));
+    }).catch((e) => {
+        res.send("Invalid Something... :(");
+    });
+
 
 });
 
