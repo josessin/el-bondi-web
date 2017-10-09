@@ -7,7 +7,8 @@ function locationArray(obj) {
             var val = {
                 uid: i,
                 fecha: obj.val()[i].fecha,
-                direccion: obj.val()[i].direccion
+                direccion: obj.val()[i].direccion,
+                nota: obj.val()[i].nota
             }
             entradas.push(val);
         }

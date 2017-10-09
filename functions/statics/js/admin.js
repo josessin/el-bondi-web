@@ -26,8 +26,11 @@ function guardar(entrada) {
     console.log(ule[0].id);
 
     db.ref("/locaciones/" + ule[0].id).set({
+
         fecha: entrada.find(".inFecha")[0].value,
-        direccion: entrada.find(".inDireccion")[0].value
+        direccion: entrada.find(".inDireccion")[0].value,
+        nota: entrada.find(".inNota")[0].value
+
     }).then(function () {
         entrada.find(".btnGuaradar").prop("disabled", false).addClass("hide").text("Guardar");
     }).catch(function () {
@@ -54,22 +57,38 @@ function registrarCambios(entrada) {
     $(entrada).find(".inDireccion").on("change paste keyup", function () {
         $(entrada).find(".btnGuaradar").removeClass("hide");
     });
+
+    $(entrada).find(".inNota").on("change paste keyup", function () {
+        $(entrada).find(".btnGuaradar").removeClass("hide");
+    });
+}
+
+function logout(){
+    firebase.auth().signOut().then(function(){
+        window.location.replace(window.location.href);
+    });
 }
 
 var entradaElemnt = '\
 <div class="entrada">\
     <ul class="ulentrada">\
         <li class="ent">\
-            <p>Fecha: </p>\
+            <p>Fecha</p>\
         </li>\
         <li class="ent">\
             <input class="inFecha" type="date" >\
         </li>\
         <li class="ent">\
-            <p>Direccion:</p>\
+            <p>Dir</p>\
         </li>\
         <li class="ent">\
-            <input class="inDireccion" type="text" size="100">\
+            <input class="inDireccion" type="text">\
+        </li>\
+        <li class="ent">\
+            <p>Info</p>\
+        </li>\
+        <li class="ent">\
+            <input class="inNota" type="text" >\
         </li>\
         <li class="ent">\
             <button class="btnGuaradar hide" type="button" onclick="guardar($(this).parent().closest(\'div\'))">Guardar</button>\

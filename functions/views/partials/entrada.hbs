@@ -1,17 +1,25 @@
 <div class="entrada">
     <ul id="{{datos.uid}}" class="ulentrada">
         <li class="ent">
-            <p>Fecha: </p>
+            <p>Fecha</p>
         </li>
         <li class="ent">
             <input class="inFecha" type="date" value="{{datos.fecha}}">
         </li>
         <li class="ent">
-            <p>Direccion:</p>
+            <p>Dir</p>
         </li>
         <li class="ent">
-            <input class="inDireccion" type="text" size="100" value="{{datos.direccion}}">
+            <input class="inDireccion" type="text" value="{{datos.direccion}}">
         </li>
+
+        <li class="ent">
+            <p>Info</p>
+        </li>
+        <li class="ent">
+            <input class="inNota" type="text" value="{{datos.nota}}">
+        </li>
+
         <li class="ent">
             <button class="btnGuaradar hide" type="button" onclick="guardar($(this).parent().closest('div'))">Guardar</button>
         </li>

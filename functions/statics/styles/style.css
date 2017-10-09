@@ -5,6 +5,7 @@
 
 :root{
     --bc-color: #81BAD4;
+    --title-bc-color:#456979;
 }
 
 body{
@@ -84,21 +85,29 @@ input{
             box-sizing: border-box;
 }
 
+input.error{
+    border: 2px solid red;
+}
+
 input:focus{
     border: 2px solid #91E0FF;
 }
+
 
 .hide{
     visibility: hidden;
 }
 
 .ent{
-    display: inline-block;
+    display: inline-block;   
+}
+.entrada .ent p{
+    font-size: 14px;
 }
 
 #main{
     text-align: center;
-    margin-left: 15%;
+    margin-left: 14vw;
     margin-top: 20px;
     width: 70%;
     background: #BEBEBE;
@@ -107,10 +116,15 @@ input:focus{
     border-radius: 5px; 
 }
 #titulo{
-    text-align: center;
     background: #456979;
     color: white;
     padding: 20px;
+}
+
+#titulo h1{
+    width: 100%;
+    margin: auto;
+    text-align: center;
 }
 
 #btnAgregar{
@@ -123,4 +137,31 @@ input:focus{
 }
 .entrada{
     margin: 3px;
+}
+.inDireccion{
+    width: 15vw;
+}
+.inNota{
+    width: 15vw;
+}
+.inFecha{
+    min-width: 120px;
+    width: 9vw;
+}
+#btnLogout{
+    margin-left: 91vw;
+    color: white;
+    border: 0px;
+    background-color: var(--title-bc-color);
+}
+
+input[type=date]::-webkit-clear-button
+{
+    display: none; /* Hide the button */
+    -webkit-appearance: none; /* turn off default browser styling */
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
 }
