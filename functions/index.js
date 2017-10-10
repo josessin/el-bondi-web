@@ -6,17 +6,17 @@ const hbs = require("hbs");
 const dummy = require("./server-others/dummy-data.js");
 const Queries = require("./server-others/queries.js");
 const helpers = require("./server-others/helpers.js");
-var serviceAccount = require("./ElBondiCerveceria-bbb129fc191c.json");
+// var serviceAccount = require("./ElBondiCerveceria-bbb129fc191c.json");
 
-firebase.initializeApp({
-    credential: firebase.credential.cert(serviceAccount),
-    authDomain: "el-bondi-server.firebaseapp.com",
-    databaseURL: "https://el-bondi-server.firebaseio.com"
-});
+// firebase.initializeApp({
+//     credential: firebase.credential.cert(serviceAccount),
+//     authDomain: "el-bondi-server.firebaseapp.com",
+//     databaseURL: "https://el-bondi-server.firebaseio.com"
+// });
 
-// const firebaseApp = firebase.initializeApp(
-//     functions.config().firebase
-// );
+const firebaseApp = firebase.initializeApp(
+    functions.config().firebase
+);
 
 var q = new Queries(firebase);
 

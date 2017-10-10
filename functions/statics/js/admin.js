@@ -8,6 +8,7 @@ var __entradas;
         __entradas = $(".entrada");
         for (var i = 0; i < __entradas.length; i++) {
             registrarCambios(__entradas[i]);
+            desabilitarInput(__entradas[i])
         }
     };
 
@@ -77,9 +78,15 @@ function registrarCambios(entrada) {
         $(entrada).find(".btnGuaradar").removeClass("hide");
     });
     
-    if(validarFecha($(entrada))){
-        $(entrada).find(".btnBorrar").removeClass("hide");
-        $(entrada).find("input").prop("disabled", false);
+    $(entrada).find(".btnBorrar").removeClass("hide");
+    $(entrada).find("input").prop("disabled", false);
+}
+
+function desabilitarInput(entrada){
+
+    if(!validarFecha($(entrada))){
+        $(entrada).find(".btnBorrar").addClass("hide");
+        $(entrada).find("input").prop("disabled", true);
     }
 }
 
