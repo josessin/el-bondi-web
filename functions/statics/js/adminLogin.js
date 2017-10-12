@@ -13,10 +13,10 @@
         const auth = firebase.auth();
 
         const promise = auth.signInWithEmailAndPassword(email, pass);
-        promise.catch(function(e){ 
+        promise.catch(function (e) {
 
             txtEmail.value = "";
-            txtPassword.value ="";
+            txtPassword.value = "";
             txtEmail.classList.add("error");
             txtPassword.classList.add("error");
             console.log("Falied:" + e.message);
@@ -26,7 +26,11 @@
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            post(window.location.href, firebase.auth().currentUser);
+            firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
+                data = { token: idToken }
+                post(window.location.href, data);
+            });
+
         } else {
             console.log("no user")
         }

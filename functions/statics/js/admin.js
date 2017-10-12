@@ -1,16 +1,23 @@
 
 var __entradas;
 
+var orignialHref;
+
 (function () {
 
-    window.onload = function () {
+    $(function () {
 
+        orignialHref = window.location.href.split("admin")[0] + "admin";
+        var topKey = $("#topKey").html()
+        console.log("Top:" + topKey);
+        var bottomKey = $("#bottomKey").html()
+        console.log("Bottom:" + bottomKey);
         __entradas = $(".entrada");
         for (var i = 0; i < __entradas.length; i++) {
             registrarCambios(__entradas[i]);
             desabilitarInput(__entradas[i])
         }
-    };
+    });
 
 }());
 
@@ -77,14 +84,14 @@ function registrarCambios(entrada) {
     $(entrada).find(".inNota").on("change paste keyup", function () {
         $(entrada).find(".btnGuaradar").removeClass("hide");
     });
-    
+
     $(entrada).find(".btnBorrar").removeClass("hide");
     $(entrada).find("input").prop("disabled", false);
 }
 
-function desabilitarInput(entrada){
+function desabilitarInput(entrada) {
 
-    if(!validarFecha($(entrada))){
+    if (!validarFecha($(entrada))) {
         $(entrada).find(".btnBorrar").addClass("hide");
         $(entrada).find("input").prop("disabled", true);
     }
@@ -98,17 +105,90 @@ function logout() {
 
 function validarFecha(jEntrada) {
     var selectedText = jEntrada.find(".inFecha").prop("value");
-    if(!selectedText){
+    if (!selectedText) {
         return false;
     }
     var selectedDate = new Date(selectedText);
     var now = new Date();
-    now.setDate(now.getDate()-1);
-    if (selectedDate < now){
+    now.setDate(now.getDate() - 1);
+    if (selectedDate < now) {
         return false;
     }
     return true;
 
+}
+
+function paginaPrevia(retried) {
+    console.log("PAGINA PREVIA");
+    if (firebase.auth().currentUser) {
+        firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+            data = {
+                token: idToken,
+                topKey: $("#topKey").html(),
+                bottomKey: $("#bottomKey").html(),
+                siguiente: "false"
+            }
+            post(window.location.href, data);
+
+        }).catch(function (error) {
+
+        });
+    } else {
+        if (!retried) {
+            setTimeout(function () {
+                paginaPrevia(true);
+            }, 0.7);
+        }
+    }
+}
+
+function paginaSiguiente(retried) {
+    console.log("PAGINA SIGUIENTE");
+    if (firebase.auth().currentUser) {
+        firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+            data = {
+                token: idToken,
+                topKey: $("#topKey").html(),
+                bottomKey: $("#bottomKey").html(),
+                siguiente: "true"
+            }
+
+            post(window.location.href, data);
+
+        }).catch(function (error) {
+
+        });
+    } else {
+        if (!retried) {
+            setTimeout(function () {
+                paginaSiguiente(true);
+            }, 0.7);
+        }
+    }
+
+}
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // It can be made less wordy using jquery...
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
 }
 
 var entradaElemnt = '\

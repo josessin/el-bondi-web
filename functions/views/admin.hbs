@@ -10,16 +10,16 @@
     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
-    <script src="./js/fbConfig.js"></script>
-    <script src="./js/jquery-3.2.1.min.js"></script>
-     <link rel="stylesheet" href="./styles/style.css">
+    <script src="/js/fbConfig.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="/styles/style.css">
     <title>Administrador</title>
 </head>
 
 <body>
     <div class="all">
         <div id="titulo">
-            <h1>ADMINISTRADOR</h1>
+            <h1>Administrador</h1>
             <button type="button" id="btnLogout" onclick="logout()">Log out</button>
         </div>
         <div id="main">
@@ -31,13 +31,21 @@
             </div>
 
             <button id="btnAgregar" type="button" onclick="agregarEntrada()" class="norm">Agregar</button>
+
+        </div>
+        <div style="text-align:center"> 
+            <button id="btnAnterior" type="button" onclick="paginaPrevia()">Anterior</button>
+            <button id="btnSiguiente" type="button" onclick="paginaSiguiente()">Siguiente</button>
         </div>
 
 
-        <script src="./js/admin.js"></script>
-        
-
     </div>
+    <!--Hidden-->
+    <div id="topKey" hidden>{{newTopKey}}</div>
+    <div id="bottomKey" hidden>{{newBottomKey}}</div>
 </body>
-    <link rel="stylesheet" href="./styles/style.css">
+<!-- Scripts -->
+<script src="/js/admin.js"></script>
+<link rel="stylesheet" href="/styles/style.css">
+
 </html>
