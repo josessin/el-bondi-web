@@ -8,6 +8,7 @@ const Queries = require("./server-others/queries.js");
 const bodyParser = require("body-parser");
 var serviceAccount = require("./ElBondiCerveceria-bbb129fc191c.json");
 
+//Setup de firebase
 firebase.initializeApp({
     credential: firebase.credential.cert(serviceAccount),
     authDomain: "el-bondi-server.firebaseapp.com",
@@ -26,8 +27,8 @@ function getFacts() {
     return ref.once("value").then(snap => snap.val());
 }
 
+//setup de Express con hbs 
 const app = express();
-
 hbs.registerPartials(path.join(__dirname, 'views/partials'))
 app.set("views", "./views");
 app.set("view engine", "hbs");
@@ -43,39 +44,54 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/android", (req, res) => {
-    firebase.database().ref("locaciones").once("value")
-});
-
 app.get("/admin", (req, res) => {
     res.sendFile(path.join(__dirname, "statics", "adminLogin.html"));
 });
 
+//Ruta android: locaciones
+app.get("/app/loc", (req, res) => {
 
+    var cant = new Number(req.query.cantidad) || 15;
+
+    q.getUltimas(cant).then((values) => {
+        var entradas = values.obj;
+        var newTopKey = values.newTopKey;
+        var newBottomKey = values.newBottomKey;
+
+        res.send({ entradas, newTopKey, newBottomKey });
+
+    }).catch((e) => res.send("getSiguiente: " + e.message));
+
+
+});
+
+//Ruta del administrador (leectura y edicion)
 app.post("/admin", (req, res) => {
     var idToken = req.body.token;
     var topKey = req.body.topKey || null;
-    var bottomKey = req.body.bottomKey || null;    
+    var bottomKey = req.body.bottomKey || null;
     var siguiente = req.body.siguiente || null;
 
+    //Verificar usuario admin registrado
     firebase.auth().verifyIdToken(idToken).then((tk) => {
-        
+        //Enviar pagina de resultados "siguiente"    
+        //No se parsea como boolean por alguna razon... por es el === "true"
         if (siguiente === "true") {
             q.getSiguiente(bottomKey).then((values) => {
                 var entradas = values.obj;
                 var newTopKey = values.newTopKey;
                 var newBottomKey = values.newBottomKey;
-
+                //renderizar y enviar
                 res.render("admin", { entradas, newTopKey, newBottomKey });
 
             }).catch((e) => res.send("getSiguiente: " + e.message));
         } else {
-            //throw new Error("?: siguente es: " + siguiente);
+            //enviar pagina de resultados "anterior"
             q.getAnterior(topKey).then((values) => {
                 var entradas = values.obj;
                 var newTopKey = values.newTopKey;
                 var newBottomKey = values.newBottomKey;
-
+                //renderizar y enviar
                 res.render("admin", { entradas, newTopKey, newBottomKey });
 
             }).catch((e) => res.send("getAnterior: " + e.message));
@@ -88,8 +104,5 @@ app.get("/__dummy", (req, res) => {
     res.send("adding...");
     dummy(firebase);
 })
-
-
-
 
 exports.app = functions.https.onRequest(app);

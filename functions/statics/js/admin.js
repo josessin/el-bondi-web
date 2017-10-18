@@ -147,10 +147,10 @@ function paginaSiguiente(retried) {
     if (firebase.auth().currentUser) {
         firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
             data = {
-                token: idToken,
-                topKey: $("#topKey").html(),
-                bottomKey: $("#bottomKey").html(),
-                siguiente: "true"
+                "token": idToken,
+                "topKey": $("#topKey").html(),
+                "bottomKey": $("#bottomKey").html(),
+                "siguiente": "true"
             }
 
             post(window.location.href, data);

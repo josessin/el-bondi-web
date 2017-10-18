@@ -1,4 +1,7 @@
-
+/*
+Objecto para realizar las queries a la base de datos de firebase,
+Se le pasa el objecto firebase como constructor
+*/
 var maxEntradas = 12;
 
 function Q(firebase) {
@@ -31,6 +34,18 @@ Q.prototype.getAnterior = function (key) {
 
 Q.prototype.getSiguiente = function(key){
     var list = this.f.database().ref('locaciones').orderByKey().startAt(key).limitToFirst(maxEntradas+1);
+    return list.once('value').then((snap) => {
+        var array = locationArray(snap);
+        return Promise.resolve({
+            newTopKey: Object.keys(snap.val())[0],
+            newBottomKey: Object.keys(snap.val())[Object.keys(snap.val()).length-1],
+            obj: array
+        });
+    });
+}
+
+Q.prototype.getUltimas = function(cantidad){
+    var list = this.f.database().ref('locaciones').limitToLast(cantidad+1);
     return list.once('value').then((snap) => {
         var array = locationArray(snap);
         return Promise.resolve({
