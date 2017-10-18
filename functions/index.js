@@ -48,20 +48,18 @@ app.get("/admin", (req, res) => {
     res.sendFile(path.join(__dirname, "statics", "adminLogin.html"));
 });
 
-//Ruta android: locaciones
+//Ruta android: locaciones (query: cantidad)
 app.get("/app/loc", (req, res) => {
 
-    var cant = new Number(req.query.cantidad) || 15;
+    var cantidad = req.query.cantidad || "15";
+    //Feo, pero viene como string, el 15 lo hago string para que sea mas ovbio..
+    var cant = new Number(cantidad);
 
     q.getUltimas(cant).then((values) => {
         var entradas = values.obj;
-        var newTopKey = values.newTopKey;
-        var newBottomKey = values.newBottomKey;
-
-        res.send({ entradas, newTopKey, newBottomKey });
+        res.send({ entradas });
 
     }).catch((e) => res.send("getSiguiente: " + e.message));
-
 
 });
 
