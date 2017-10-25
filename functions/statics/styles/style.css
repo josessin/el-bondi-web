@@ -151,10 +151,7 @@ input:focus{
     width: 9vw;
 }
 #btnLogout{
-    margin-left: 91vw;
-    color: white;
-    border: 0px;
-    background-color: var(--title-bc-color);
+    color: var(--bc-color);
 }
 
 input[type=date]::-webkit-clear-button
