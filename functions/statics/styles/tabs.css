@@ -1,7 +1,7 @@
 /*TAB FADING */
 .tabcontent {
-    -webkit-animation: fadeEffect 0.7s;
-    animation: fadeEffect 0.7s; /* Fading effect takes 1 second */
+    -webkit-animation: fadeEffect 0.6s;
+    animation: fadeEffect 0.6s; /* Fading effect takes 1 second */
 }
 
 @-webkit-keyframes fadeEffect {
@@ -17,30 +17,41 @@
 /* Style the tab */
 div.tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-    
+    padding-top: 15px;
+    border-top: 5px solid rgb(101, 139, 139);
+    background-color: #e4e4e4;
+    text-align: center;
 }
 
 /* Style the buttons inside the tab */
 div.tab button {
     background-color: inherit;
-    float: left;
+    display: inline-block;
     border: none;
+    border-spacing: 0;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+   /* padding: 14px 25px;*/
+    width: 130px;
+    height: 40px;
     transition: 0.3s;
+    margin: 0;
 }
+
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #ddd;
+    
+    background-color: inherit;
+}
+div.tab button#btnLogout:hover{
+    color: rgb(253, 36, 36);
+    
 }
 
 /* Create an active/current tablink class */
 div.tab button.active {
-    background-color: #ccc;
+    background-color: #81BAD4;
 }
 
 /* Style the tab content */
@@ -49,4 +60,8 @@ div.tab button.active {
     padding: 6px 12px;
     /*border: 1px solid #ccc;*/
     border-top: none;
+}
+#btnLogout{
+    color: var(--bc-color);
+    
 }

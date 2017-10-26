@@ -2,19 +2,23 @@ module.exports = function (firebase) {
 
     var data = [{
         fecha: "2017-10-5",
-        direccion: "huarpes 51 mendoza"
+        direccion: "huarpes 51 mendoza",
+        nota: "Cerca de la aristides"
     },
     {
         fecha: "2017-10-7",
-        direccion: "paso de los andes 210 godoy cruz"
+        direccion: "paso de los andes 210 godoy cruz",
+        nota: "Cerca de la aristides"
     },
     {
         fecha: "2017-10-8",
-        direccion: "rodriguez 51 mendoza"
+        direccion: "rodriguez 51 mendoza",
+        nota: "Cerca de la aristides"
     },
     {
         fecha: "2017-10-10",
-        direccion: "la madrid 520 mendoza"
+        direccion: "la madrid 520 mendoza",
+        nota: "Cerca de la aristides"
     },
     {
         fecha: "2017-10-20",

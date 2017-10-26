@@ -1,3 +1,4 @@
+
 const firebase = require("firebase-admin");
 const functions = require('firebase-functions');
 const express = require("express");
@@ -38,6 +39,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+
 app.get("/", (req, res) => {
     getFacts().then(lugares => {
         res.render("index", { lugares });
@@ -51,11 +53,11 @@ app.get("/admin", (req, res) => {
 //Ruta android: locaciones (query: cantidad)
 app.get("/app/loc", (req, res) => {
 
-    var cantidad = req.query.cantidad || "15";
+    var cantidad = req.query.cantidad || "3";
     //Feo, pero viene como string, el 15 lo hago string para que sea mas ovbio..
-    var cant = new Number(cantidad);
+    var cant = new Number(cantidad).valueOf();
 
-    q.getUltimas(cant).then((values) => {
+    q.getDesde(new Date(),cant ,0).then((values) => {
         var entradas = values.obj;
         res.send({ entradas });
 
@@ -103,4 +105,16 @@ app.get("/__dummy", (req, res) => {
     dummy(firebase);
 })
 
+
 exports.app = functions.https.onRequest(app);
+exports.dbTriggers = functions.database
+.ref("/locaciones/{pushId}")
+.onWrite(event =>{
+    const post = event.data.val();
+    if(post.sorted){
+        return;
+    }
+    post.sorted = true;
+    post.sortFecha = Date.parse(post.fecha);
+    return event.data.ref.set(post)
+});

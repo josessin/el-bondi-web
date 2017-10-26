@@ -56,6 +56,22 @@ Q.prototype.getUltimas = function(cantidad){
     });
 }
 
+Q.prototype.getDesde = function(fecha, cant, iter){
+    fecha = fecha || new Date();
+    if(iter > 15)
+        return;
+    
+    var list = this.f.database().ref('locaciones').orderByChild("sortFecha").startAt(Date.parse(toISO(fecha))).limitToFirst(cant);
+    return list.once('value').then((snap) => {
+        var array = sortedArray(snap);
+        return Promise.resolve({
+            newTopKey: Object.keys(snap.val())[0],
+            newBottomKey: Object.keys(snap.val())[Object.keys(snap.val()).length-1],
+            obj: array
+        });
+    });
+}
+
 Q.prototype.validateUser = function (user) {
     return this.f.database().ref("admins").child(user.uid).once("value", (snap) => {
         if (snap.val()) {
@@ -76,7 +92,6 @@ function locationArray(obj) {
             first = false;
             continue;
         }
-
         if (obj.val().hasOwnProperty(i)) {
 
             var val = {
@@ -87,12 +102,37 @@ function locationArray(obj) {
             }
             entradas.push(val);
         }
-
-
     }
-
     return entradas;
+}
 
+function sortedArray(obj){
+    var entradas = [];
+    var first = true;
+
+    for (var i in obj.val()) {
+
+        if (obj.val().hasOwnProperty(i)) {
+
+            var val = {
+                uid: i,
+                fecha: obj.val()[i].fecha,
+                direccion: obj.val()[i].direccion,
+                nota: obj.val()[i].nota,
+                sortFecha: obj.val()[i].sortFecha
+            }
+            entradas.push(val);
+        }
+    }
+    entradas.sort((a,b)=>{
+        return a.sortFecha - b.sortFecha;
+    });
+    return entradas;
+}
+
+function toISO(fechaObj){
+    var fechaISO = fechaObj.getFullYear() + "-" + (fechaObj.getMonth()+1) + "-" + fechaObj.getDate();
+    return fechaISO;
 }
 
 module.exports = Q;

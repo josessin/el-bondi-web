@@ -12,33 +12,59 @@
     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase-database.js"></script>
     <script src="/js/fbConfig.js"></script>
     <script src="/js/jquery-3.2.1.min.js"></script>
+    
+    <link rel="stylesheet" href="/styles/tabs.css">
+    </script>
     <link rel="stylesheet" href="/styles/style.css">
     <title>Administrador</title>
 </head>
 
 <body>
     <div class="all">
+
         <div id="titulo">
             <h1>Administrador</h1>
+
+        </div>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Locaciones')" id="defaultOpen">Locaciones</button>
+            <button class="tablinks" onclick="openTab(event, 'Productos')">Productos</button>
             <button type="button" id="btnLogout" onclick="logout()">Log out</button>
         </div>
-        <div id="main">
 
-            <div id="entradas">
-                {{#each entradas as |datos|}} 
-                    {{>entrada datos = datos}} 
-                {{/each}}
+        <div id="Locaciones" class="tabcontent">
+            <div id="main">
+
+                <div id="entradas">
+                    {{#each entradas as |datos|}} {{>entrada datos = datos}} {{/each}}
+                </div>
+
+                <button id="btnAgregar" type="button" onclick="agregarEntrada()" class="norm">Agregar</button>
+
+            </div>
+            <div style="text-align:center">
+                <button id="btnAnterior" type="button" onclick="paginaPrevia()">Anterior</button>
+                <button id="btnSiguiente" type="button" onclick="paginaSiguiente()">Siguiente</button>
             </div>
 
-            <button id="btnAgregar" type="button" onclick="agregarEntrada()" class="norm">Agregar</button>
+        </div>
+        <div id="Productos" class="tabcontent">
+            <div id="main">
+
+                <div id="entradas">
+                    {{#each entradas as |datos|}} {{>entrada datos = datos}} {{/each}}
+                </div>
+
+                <button id="btnAgregar" type="button" onclick="agregarEntrada()" class="norm">Agregar</button>
+
+            </div>
+            <div style="text-align:center">
+                <button id="btnAnterior" type="button" onclick="paginaPrevia()">Anterior</button>
+                <button id="btnSiguiente" type="button" onclick="paginaSiguiente()">Siguiente</button>
+            </div>
 
         </div>
-        <div style="text-align:center"> 
-            <button id="btnAnterior" type="button" onclick="paginaPrevia()">Anterior</button>
-            <button id="btnSiguiente" type="button" onclick="paginaSiguiente()">Siguiente</button>
-        </div>
-
-
     </div>
     <!--Hidden-->
     <div id="topKey" hidden>{{newTopKey}}</div>
@@ -46,6 +72,7 @@
 </body>
 <!-- Scripts -->
 <script src="/js/admin.js"></script>
+<script src="/js/tabManager.js"></script>
 <link rel="stylesheet" href="/styles/style.css">
 
 </html>
