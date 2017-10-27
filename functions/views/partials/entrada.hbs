@@ -4,27 +4,16 @@
             <button class="btnBorrar hide" type="button" onclick="borrarEntrada($(this).parent().closest('div'))">X</button>
         </li>
         <li class="ent">
-            <p>Fecha</p>
+            <input class="inFecha" type="date" value="{{datos.fecha}}" disabled placeholder="Fecha">
         </li>
         <li class="ent">
-            <input class="inFecha" type="date" value="{{datos.fecha}}" disabled>
+            <input class="inDireccion" type="text" value="{{datos.direccion}}" disabled placeholder="Direccion">
         </li>
         <li class="ent">
-            <p>Dir</p>
+            <input class="inNota" type="text" value="{{datos.nota}}" disabled placeholder="Info extra">
         </li>
         <li class="ent">
-            <input class="inDireccion" type="text" value="{{datos.direccion}}" disabled>
-        </li>
-
-        <li class="ent">
-            <p>Info</p>
-        </li>
-        <li class="ent">
-            <input class="inNota" type="text" value="{{datos.nota}}" disabled>
-        </li>
-
-        <li class="ent">
-            <button class="btnGuaradar hide" type="button" onclick="guardar($(this).parent().closest('div'))">Guardar</button>
+            <button class="btnGuaradar hide" type="button" onclick="guardarEntrada($(this).parent().closest('div'))">Guardar</button>
         </li>
     </ul>
 </div>

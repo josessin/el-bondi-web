@@ -57,11 +57,28 @@ app.get("/app/loc", (req, res) => {
     //Feo, pero viene como string, el 15 lo hago string para que sea mas ovbio..
     var cant = new Number(cantidad).valueOf();
 
-    q.getDesde(new Date(),cant ,0).then((values) => {
+    q.getDesde(new Date(), cant, 0).then((values) => {
         var entradas = values.obj;
         res.send({ entradas });
 
     }).catch((e) => res.send("getSiguiente: " + e.message));
+
+});
+
+app.get("/admin/prod", (req, res) => {
+
+    q.getProductos().then((productos) => {
+        res.send({ productos });
+    }).catch((e) => res.send("getProductos: " + e.message));
+
+});
+
+app.get("/app/prod", (req, res) => {
+
+    q.getProductos().then((productos) => {
+        res.send({ productos });
+
+    }).catch((e) => res.send("getProductos: " + e.message));
 
 });
 
@@ -79,10 +96,10 @@ app.post("/admin", (req, res) => {
         if (siguiente === "true") {
             q.getSiguiente(bottomKey).then((values) => {
                 var entradas = values.obj;
-                var newTopKey = values.newTopKey;
-                var newBottomKey = values.newBottomKey;
+                var newEntTopKey = values.newTopKey;
+                var newEntBottomKey = values.newBottomKey;
                 //renderizar y enviar
-                res.render("admin", { entradas, newTopKey, newBottomKey });
+                res.render("admin", { entradas, newEntTopKey, newEntBottomKey });
 
             }).catch((e) => res.send("getSiguiente: " + e.message));
         } else {
@@ -108,13 +125,13 @@ app.get("/__dummy", (req, res) => {
 
 exports.app = functions.https.onRequest(app);
 exports.dbTriggers = functions.database
-.ref("/locaciones/{pushId}")
-.onWrite(event =>{
-    const post = event.data.val();
-    if(post.sorted){
-        return;
-    }
-    post.sorted = true;
-    post.sortFecha = Date.parse(post.fecha);
-    return event.data.ref.set(post)
-});
+    .ref("/locaciones/{pushId}")
+    .onWrite(event => {
+        const post = event.data.val();
+        if (post.sorted) {
+            return;
+        }
+        post.sorted = true;
+        post.sortFecha = Date.parse(post.fecha);
+        return event.data.ref.set(post)
+    });

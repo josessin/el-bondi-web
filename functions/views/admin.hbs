@@ -52,26 +52,22 @@
         <div id="Productos" class="tabcontent">
             <div id="main">
 
-                <div id="entradas">
-                    {{#each entradas as |datos|}} {{>entrada datos = datos}} {{/each}}
+                <div id="productos">
+                   
                 </div>
 
-                <button id="btnAgregar" type="button" onclick="agregarEntrada()" class="norm">Agregar</button>
+                <button id="btnAgregar" type="button" onclick="agregarProducto()" class="norm">Agregar</button>
 
             </div>
-            <div style="text-align:center">
-                <button id="btnAnterior" type="button" onclick="paginaPrevia()">Anterior</button>
-                <button id="btnSiguiente" type="button" onclick="paginaSiguiente()">Siguiente</button>
-            </div>
-
         </div>
     </div>
     <!--Hidden-->
-    <div id="topKey" hidden>{{newTopKey}}</div>
-    <div id="bottomKey" hidden>{{newBottomKey}}</div>
+    <div id="topKey" hidden>{{newEntTopKey}}</div>
+    <div id="bottomKey" hidden>{{newEntBottomKey}}</div>
 </body>
 <!-- Scripts -->
-<script src="/js/admin.js"></script>
+<script src="/js/adminLocaciones.js"></script>
+<script src="/js/adminProductos.js"></script>
 <script src="/js/tabManager.js"></script>
 <link rel="stylesheet" href="/styles/style.css">
 

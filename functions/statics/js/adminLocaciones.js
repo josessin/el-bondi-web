@@ -1,6 +1,5 @@
 
 var __entradas;
-
 var orignialHref;
 
 (function () {
@@ -15,14 +14,15 @@ var orignialHref;
         __entradas = $(".entrada");
         for (var i = 0; i < __entradas.length; i++) {
             registrarCambios(__entradas[i]);
-            desabilitarInput(__entradas[i])
+            
+            desabilitarInput(__entradas[i]);
         }
     });
 
 }());
 
 
-function guardar(jEntrada) {
+function guardarEntrada(jEntrada) {
 
     if (!validarFecha(jEntrada)) {
         alert("La fecha no ha sido ingresada correctamente o es anterior a la fecha de hoy!\n\
@@ -86,6 +86,7 @@ function registrarCambios(entrada) {
     });
 
     $(entrada).find(".btnBorrar").removeClass("hide");
+ 
     $(entrada).find("input").prop("disabled", false);
 }
 
@@ -94,6 +95,7 @@ function desabilitarInput(entrada) {
     if (!validarFecha($(entrada))) {
         $(entrada).find(".btnBorrar").addClass("hide");
         $(entrada).find("input").prop("disabled", true);
+        $(entrada).find(".inNota").prop("placeholder","");
     }
 }
 
@@ -198,25 +200,16 @@ var entradaElemnt = '\
             <button class="btnBorrar hide" type="button" onclick="borrarEntrada($(this).parent().closest(\'div\'))">X</button>\
         </li>\
         <li class="ent">\
-            <p>Fecha</p>\
+            <input class="inFecha" type="date" disabled placeholder="Fecha">\
         </li>\
         <li class="ent">\
-            <input class="inFecha" type="date" disabled >\
+            <input class="inDireccion" type="text" disabled placeholder="Direccion">\
         </li>\
         <li class="ent">\
-            <p>Dir</p>\
+            <input class="inNota" type="text" disabled placeholder="Extra info">\
         </li>\
         <li class="ent">\
-            <input class="inDireccion" type="text" disabled>\
-        </li>\
-        <li class="ent">\
-            <p>Info</p>\
-        </li>\
-        <li class="ent">\
-            <input class="inNota" type="text" disabled>\
-        </li>\
-        <li class="ent">\
-            <button class="btnGuaradar hide" type="button" onclick="guardar($(this).parent().closest(\'div\'))">Guardar</button>\
+            <button class="btnGuaradar hide" type="button" onclick="guardarEntrada($(this).parent().closest(\'div\'))">Guardar</button>\
         </li>\
     </ul>\
 </div>'

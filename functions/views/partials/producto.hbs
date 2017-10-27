@@ -1,0 +1,25 @@
+<div class="producto">
+    <ul class="ulproducto">
+        <li class="prod">
+            <button class="btnBorrar" type="button" onclick="borrarProducto($(this).parent().closest('div'))">X</button>
+        </li class="prod">
+
+        <li class="prod">
+            <input type="text" class="inNombre" placeholder="Nombre">
+        </li>
+         <li class="prod">
+            <input type="number" class="inPrecio" placeholder="Precio">
+        </li>
+        <li class="prod">
+            <textarea class= "inDescripcion" placeholder="Descripcion" rows="5" cols="40"></textarea>
+        </li>
+        <li class="prod">
+            <div class="prodImgContainer">
+                <img class="productImage" src="/img/foodicon.png" alt="imagen">
+            </div>
+        </li>
+        <li class="prod">
+            <button class="btnGuaradar hide" type="button" onclick="guardarProduct($(this).parent().closest('div'))">Guardar</button>
+        </li>
+    </ul>
+</div>

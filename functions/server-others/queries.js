@@ -63,7 +63,7 @@ Q.prototype.getDesde = function(fecha, cant, iter){
     
     var list = this.f.database().ref('locaciones').orderByChild("sortFecha").startAt(Date.parse(toISO(fecha))).limitToFirst(cant);
     return list.once('value').then((snap) => {
-        var array = sortedArray(snap);
+        var array = sortedLocArray(snap);
         return Promise.resolve({
             newTopKey: Object.keys(snap.val())[0],
             newBottomKey: Object.keys(snap.val())[Object.keys(snap.val()).length-1],
@@ -79,6 +79,33 @@ Q.prototype.validateUser = function (user) {
         }
         return Promise.resolve(false);
     }).catch(e => res.send("validate: " + e.message));
+}
+
+Q.prototype.getProductos = function(){
+    return this.f.database().ref('productos').once("value").then((snap)=>{
+        var array = productosArray(snap);
+        return Promise.resolve(array);
+    });
+}
+
+function productosArray(obj){
+    var products = [];
+
+    for (var i in obj.val()) {
+      
+        if (obj.val().hasOwnProperty(i)) {
+
+            var val = {
+                uid: i,
+                nombre: obj.val()[i].nombre,
+                precio: obj.val()[i].precio,
+                descripcion: obj.val()[i].descripcion,
+                imgUrl: obj.val()[i].imgUrl || "/img/foodicon.png" //Imagen por defaolt
+            }
+            products.push(val);
+        }
+    }
+    return products;
 }
 
 function locationArray(obj) {
@@ -98,7 +125,7 @@ function locationArray(obj) {
                 uid: i,
                 fecha: obj.val()[i].fecha,
                 direccion: obj.val()[i].direccion,
-                nota: obj.val()[i].nota
+                nota: obj.val()[i].nota,
             }
             entradas.push(val);
         }
@@ -106,7 +133,7 @@ function locationArray(obj) {
     return entradas;
 }
 
-function sortedArray(obj){
+function sortedLocArray(obj){
     var entradas = [];
     var first = true;
 
