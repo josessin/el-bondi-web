@@ -41,9 +41,8 @@ app.use(bodyParser.urlencoded({
 
 
 app.get("/", (req, res) => {
-    getFacts().then(lugares => {
-        res.render("index", { lugares });
-    });
+    
+        res.render("index");
 });
 
 app.get("/admin", (req, res) => {

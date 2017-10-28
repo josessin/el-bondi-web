@@ -1,0 +1,99 @@
+body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  
+}
+p {font-size: 16px;}
+.margin {margin-bottom: 45px;}
+
+#marca{
+    color: orange;
+    font-weight: bolder;
+}
+ #quienes{
+     color: orange;
+ }
+
+ #donde{
+     color:orange;
+ }
+.fondo{
+    background: url(/img/tirada.jpg) no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+.bg-1 { 
+     
+    background-color: transparent; /* Green */
+    color: #ffffff;
+}
+
+#oscuro{
+    background-color: #1D1D1D;
+}
+
+.bg-2 { 
+   
+    background-color: rgb(29, 29, 29); /* Dark Blue */
+    color: #ffffff;
+    opacity: 0.85;
+    
+}
+.bg-3 { 
+ 
+    background-color: rgb(243, 89, 0); /* White */
+    color: #ffffff;
+    opacity: 0.9;
+}
+.bg-4 { 
+    
+    background-color: rgba(248, 136, 8, 0.74); /* Black Gray */
+    color: #fff;
+}
+.span4{
+    float: right;
+}
+
+
+
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    
+}
+.navbar-nav  li a:hover {
+    color: #1abc9c !important;
+}
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: rgb(26, 26, 26);
+    color: #fdfdfd;
+    cursor: pointer;
+    padding: 9px;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100px;
+    opacity: 0.8;
+  }
+  
+  #myBtn:hover {
+    background-color: rgb(255, 72, 0);
+  }
