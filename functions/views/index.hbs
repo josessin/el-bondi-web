@@ -11,68 +11,72 @@
     <link rel="stylesheet" href="/styles/webStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="/js/web.js"></script>
 </head>
 
 <body>
 
     <!-- Navbar -->
-   <nav id="oscuro" class="navbar navbar-default">
+    <nav id="oscuro" class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a id="marca" class="navbar-brand" href="#">El Bondi - Cervecería Nómade</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right smooth-scroll list-unstyled">
-                    
-                    <li><a id="quienes" href="#what">QUIENES SOMOS</a></li>
-                    <li><a id="donde" href="#where">DONDE ESTAMOS</a></li>
+
+                    <li>
+                        <a id="quienes" href="#what">QUIENES SOMOS</a>
+                    </li>
+                    <li>
+                        <a id="donde" href="#where">DONDE ESTAMOS</a>
+                    </li>
                 </ul>
             </div>
         </div>
-   </nav>
+    </nav>
 
     <!--boton para volver arriba -->
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-   <div class="fondo">
-    <!-- First Container -->
-    
-    <div id="who" class=" container-fluid bg-1 text-center">
-        <h3 class="margin"></h3>
-        <img id="logo" src="/img/logo.svg" class="img-responsive margin" style="display:inline" alt="Bird" width="420" height="420">
-        <h3>Estamos en:</h3>
-        <h3>¡LOS ESPERAMOS!</h3>   
-    </div>
-   
+    <div class="fondo">
+        <!-- First Container -->
+
+        <div id="who" class=" container-fluid bg-1 text-center">
+            <h3 class="margin"></h3>
+            <img id="logo" src="/img/logo.svg" class="img-responsive margin" style="display:inline" alt="Bird" width="420" height="420">
+            <h3>Estamos en:</h3>
+            <h4 id="dirActual"></h4>
+            <h3>¡LOS ESPERAMOS!</h3>
+        </div>
 
 
-    <!-- Second Container-->
-    <div id="what" class="container-fluid bg-2 text-center">
-        <h3 class="margin">-QUIENES SOMOS-</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
-        
-    </div>
+
+        <!-- Second Container-->
+        <div id="what" class="container-fluid bg-2 text-center">
+            <h3 class="margin">-QUIENES SOMOS-</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.
+            </p>
+
+        </div>
 
 
-    <!-- Third Container (Grid) -->
-    <div id="where" class="container-fluid bg-3 text-center">
-        <h3 class="margin">-Hoy nos encuentran en estos lugares-</h3><br>
-        <div class="row-fluid">
-            <div class="span8">
-                <iframe width="50%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=15+Springfield+Way,+Hythe,+CT21+5SH&aq=t&sll=52.8382,-2.327815&sspn=8.047465,13.666992&ie=UTF8&hq=&hnear=15+Springfield+Way,+Hythe+CT21+5SH,+United+Kingdom&t=m&z=14&ll=51.077429,1.121722&output=embed"></iframe>
+        <!-- Third Container (Grid) -->
+        <div id="where" class="container-fluid bg-3 text-center">
+            <h3 class="margin">-Hoy nos encuentran en estos lugares-</h3>
+            <br>
+            <div class="row-fluid">
+                <div class="span8" id="map"></div>
             </div>
 
         </div>
-       
     </div>
-</div>
     <!-- Footer 
     <footer class="container-fluid bg-4 text-center">
         <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p>
@@ -97,6 +101,11 @@
 
         }
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_FuI6e9zDwsKtzJAgy9OsYsswPjPB6NU&callback=init">
+    </script>
 </body>
 
 </html>
+<!--
+    <iframe width="50%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=15+Springfield+Way,+Hythe,+CT21+5SH&aq=t&sll=52.8382,-2.327815&sspn=8.047465,13.666992&ie=UTF8&hq=&hnear=15+Springfield+Way,+Hythe+CT21+5SH,+United+Kingdom&t=m&z=14&ll=51.077429,1.121722&output=embed"></iframe>    
+-->
