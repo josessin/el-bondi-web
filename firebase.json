@@ -15,13 +15,7 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "app",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          }
-        ]
+        "function": "app"  
       }
     ],
     "ignore": [

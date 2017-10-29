@@ -36,20 +36,20 @@ p {font-size: 16px;}
 
 .bg-2 { 
    
-    background-color: rgb(29, 29, 29); /* Dark Blue */
+    background-color: rgb(29, 29, 29); 
     color: #ffffff;
     opacity: 0.85;
     
 }
 .bg-3 { 
  
-    background-color: rgb(243, 89, 0); /* White */
+    background-color: rgb(243, 89, 0); 
     color: #ffffff;
     opacity: 0.9;
 }
 .bg-4 { 
     
-    background-color: rgba(248, 136, 8, 0.74); /* Black Gray */
+    background-color: rgba(248, 136, 8, 0.74);
     color: #fff;
 }
 .span4{
@@ -102,4 +102,15 @@ p {font-size: 16px;}
       height: 400px;
       width: 75%;
       background-color: grey;
+      border: 5px solid  rgb(196, 52, 0);
+    
+  }
+  .txt-naranja{
+    color:rgb(255, 72, 0);
+  }
+  .bolder{
+    font-weight: bolder;
+  }
+  a#dirActual{
+    color:rgb(255, 255, 255);
   }

@@ -5,8 +5,10 @@ function init() {
 
     $.getJSON(url + "app/loc?cantidad=1", function (data) {
         
-        var dir = data.entradas[0].direccion
-        $("#dirActual").html(dir);
+        var dir = data.entradas[0].direccion;
+        var nota = data.entradas[0].nota;
+        $("#dirActual h4").html(mayus(dir));
+        $("#nota").html(nota);
         var geocoder = new google.maps.Geocoder();
 
         var mendoza = { lat: -32.8895, lng: 68.8458 };
@@ -31,4 +33,8 @@ function init() {
        
     })
 
+}
+
+function mayus(s){
+    return s[0].toUpperCase() + s.slice(1);
 }
