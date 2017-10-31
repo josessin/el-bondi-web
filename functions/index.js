@@ -105,10 +105,10 @@ app.post("/admin", (req, res) => {
             //enviar pagina de resultados "anterior"
             q.getAnterior(topKey).then((values) => {
                 var entradas = values.obj;
-                var newTopKey = values.newTopKey;
-                var newBottomKey = values.newBottomKey;
+                var newEntTopKey = values.newTopKey;
+                var newEntBottomKey = values.newBottomKey;
                 //renderizar y enviar
-                res.render("admin", { entradas, newTopKey, newBottomKey });
+                res.render("admin", { entradas, newEntTopKey, newEntBottomKey });
 
             }).catch((e) => res.send("getAnterior: " + e.message));
         }

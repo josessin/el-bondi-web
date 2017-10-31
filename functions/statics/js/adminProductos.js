@@ -43,7 +43,7 @@ function cargarProducto(prod) {
     nuEl.find(".inNombre")[0].value = prod.nombre;
     nuEl.find(".inPrecio")[0].value = prod.precio;
     nuEl.find(".inDescripcion")[0].value = prod.descripcion;
-
+    nuEl.find(".inActivo")[0].checked = prod.activo;
     //Le agragamos al id el uid para que sea unico, asi el for="" de label no se confunde
     nuEl.find("input[type=file]").attr("id", "fileInput" + prod.uid);
     nuEl.find(".imgLabel").prop("htmlFor", nuEl.find("input[type=file]").prop("id"));
@@ -59,6 +59,8 @@ function cargarProducto(prod) {
         // Handle any errors
     });
     registrarModificaciones(nuEl);
+    activarProducto(nuEl, nuEl.find(".inActivo")[0]);
+    nuEl.find(".btnGuaradar").addClass("hide");
 
 }
 
@@ -118,7 +120,8 @@ function guardarProducto(jProducto) {
         nombre: jProducto.find(".inNombre")[0].value,
         precio: jProducto.find(".inPrecio")[0].value,
         descripcion: jProducto.find(".inDescripcion")[0].value,
-        imgUrl: jProducto.find(".inProductImage").prop("alt")
+        imgUrl: jProducto.find(".inProductImage").prop("alt"),
+        activo: jProducto.find(".inActivo")[0].checked
 
     }).then(function () {
         jProducto.find(".btnGuaradar").prop("disabled", false).addClass("hide").text("Guardar");
@@ -126,6 +129,21 @@ function guardarProducto(jProducto) {
         console.log(e);
         window.location.replace(window.location.href);
     });
+}
+
+function activarProducto(jProd,cb){
+    if(cb.checked){
+        $(jProd).find("input[type=text]").prop("disabled", false);
+        $(jProd).find("input[type=number]").prop("disabled", false);
+        $(jProd).find("input[type=file]").prop("disabled", false);
+        $(jProd).find("textarea").prop("disabled", false);
+    }else{
+        $(jProd).find("input[type=text]").prop("disabled", true);
+        $(jProd).find("input[type=number]").prop("disabled", true);
+        $(jProd).find("input[type=file]").prop("disabled", true);
+        $(jProd).find("textarea").prop("disabled", true);
+    }
+    jProd.find(".btnGuaradar").removeClass("hide");
 }
 
 function borrarProducto(jProd) {
@@ -177,6 +195,9 @@ var productElemnt = '\
     <ul id="{{datos.uid}}" class="ulproducto">\
         <li class="prod">\
             <button class="btnBorrar" type="button" onclick="borrarProducto($(this).parent().closest(\'div\'))">X</button>\
+        </li class="prod">\
+        <li class="prod">\
+            <input class="inActivo" type="checkbox" onclick="activarProducto($(this).parent().closest(\'div\'),this)" checked>\
         </li class="prod">\
         <li class="prod">\
             <input type="text" class="inNombre" placeholder="Nombre">\

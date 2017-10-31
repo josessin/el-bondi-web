@@ -100,7 +100,8 @@ function productosArray(obj){
                 nombre: obj.val()[i].nombre,
                 precio: obj.val()[i].precio,
                 descripcion: obj.val()[i].descripcion,
-                imgUrl: obj.val()[i].imgUrl
+                imgUrl: obj.val()[i].imgUrl,
+                activo: obj.val()[i].activo
             }
             products.push(val);
         }
