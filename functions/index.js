@@ -55,8 +55,10 @@ app.get("/app/loc", (req, res) => {
     var cantidad = req.query.cantidad || "3";
     //Feo, pero viene como string, el 15 lo hago string para que sea mas ovbio..
     var cant = new Number(cantidad).valueOf();
-
-    q.getDesde(new Date(), cant, 0).then((values) => {
+    //fecha de ayer
+    var d = new Date();
+    d.setDate(d.getDate() - 1);
+    q.getDesde(d, cant, 0).then((values) => {
         var entradas = values.obj;
         res.send({ entradas });
 
